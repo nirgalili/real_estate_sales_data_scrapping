@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 
+
 # globals
 
 GOVMAP_URL = 'https://www.govmap.gov.il/'
@@ -12,17 +13,23 @@ GOVMAP_DEMO_VIDEO_URL = 'https://drive.google.com/file/d/1nGzsG02YW-eDYimibP7hbL
 
 # functions
 
+def show_video():
+    os.startfile("demo.mp4")
 
-def script_manual_instractions():
+
+def script_manual_instructions():
     print('')
-    print(f'Follow the workflow shown in this video {GOVMAP_DEMO_VIDEO_URL}.\n\
-    The steps are:\n\
+    print(f'Please refer to the README.md for graphical explanation\n\
+The steps are:\n\
     1. go to govmap site {GOVMAP_URL}\n\
-    2. create polygon on area of interest real estate.\n\
-    3. after table with info of latest deals open press F12.\n\
-    4. copy the class "realsestate-items-wrapper table-mode scrollWrapper"\n\
-    5. create txt file with the copied text.\n\
-    6. put the file in the directory.'
+    2. Browse the map to find a place of interest.\n\
+    3. Highlight real estate deals layer.\n\
+    4. In application menu go to regional analysis.\n\
+    5. Create polygon on area of interest real estate.\n\
+    6. After table with info of latest deals open press F12.\n\
+    7. Copy the class "realsestate-items-wrapper table-mode scrollWrapper"\n\
+    8. Create txt file with the copied text.\n\
+    9. Save the file in the project path.'
           )
     print('')
     input('Press any key after finish all steps: ')
@@ -57,7 +64,13 @@ def open_excel_file(filename_in_directory_with_xlsx):
 
 if __name__ == "__main__":
 
-    script_manual_instractions()
+    try:
+        show_video()
+
+    except FileNotFoundError:
+        pass
+
+    script_manual_instructions()
 
     with open('new.txt', encoding="utf8") as file:
         site_text = file.read()
